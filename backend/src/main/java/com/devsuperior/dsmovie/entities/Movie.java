@@ -1,9 +1,13 @@
 package com.devsuperior.dsmovie.entities;
 
+import java.util.Set;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -30,6 +34,9 @@ public class Movie {
   
   private String image;
 
+  //Set é uma lista com a garantia de não ter dados repetidos.
+  @OneToMany(mappedBy = "id.movie")
+  private Set<Score> scores = new HashSet<>();
 
 
   //Constructors
@@ -85,6 +92,10 @@ public class Movie {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public Set<Score> getScores() {
+    return scores;
   }
 
 
